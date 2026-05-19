@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Taxonomy — Union Wealth</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #EE202E;
+    --maroon: #9A1220;
+    --grey: #434345;
+    --dark: #2E2E30;
+    --light: #F7F5F3;
+    --border: #E2DDD8;
+    --white: #FFFFFF;
+  }
+
+  body {
+    font-family: 'Prompt', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--dark);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--red);
+  }
+  .header-label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .header h1 span { color: var(--red); }
+  .header-sub {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  /* ── 6 DIMENSIONS PILLS ── */
+  .dims {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dim-pill {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    padding: 4px 12px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── INTRO LINK ── */
+  .intro-bar {
+    background: var(--maroon);
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .intro-bar span {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+  }
+  .intro-bar a {
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    border: 0.5px solid rgba(255,255,255,0.4);
+    border-radius: 2px;
+    padding: 6px 16px;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .intro-bar a:hover { background: rgba(255,255,255,0.12); }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: background 0.15s;
+  }
+  .card:hover { background: #FDFBFA; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .card-num {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--red);
+    background: #FEF0F0;
+    border: 0.5px solid #F5BBBB;
+    border-radius: 2px;
+    padding: 3px 8px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .card-titles { flex: 1; }
+  .card-title-th {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.4;
+    margin-bottom: 2px;
+  }
+  .card-title-en {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--grey);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 18px;
+    padding-left: 0;
+    border-left: 2px solid var(--border);
+    padding-left: 12px;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--maroon);
+    text-decoration: none;
+    border: 0.5px solid #C89098;
+    border-radius: 2px;
+    padding: 6px 14px;
+    width: fit-content;
+    transition: background 0.15s, color 0.15s;
+  }
+  .card-link:hover {
+    background: var(--maroon);
+    color: #fff;
+    border-color: var(--maroon);
+  }
+  .card-link svg {
+    width: 13px; height: 13px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--dark);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+  .footer-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.25);
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 40px 24px 32px; }
+    .intro-bar { padding: 12px 24px; flex-direction: column; align-items: flex-start; }
+    .grid { grid-template-columns: 1fr; }
+    .footer { padding: 16px 24px; flex-direction: column; gap: 4px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-label">Union Wealth · Wellness Framework</p>
+  <h1>WELLNESS <span>TAXONOMY</span><br>แนวปฏิบัติ 9 หมวด</h1>
+  <p class="header-sub">ยกระดับองค์กรสู่สุขสภาพสมบูรณ์ผ่านแนวปฏิบัติที่สกัดจากมาตรฐานสากล<br>เพื่อสร้างบุคลากรที่มีคุณภาพและมีความสุขอย่างยั่งยืน</p>
+  <div class="dims">
+    <span class="dim-pill">กาย</span>
+    <span class="dim-pill">ใจ</span>
+    <span class="dim-pill">จิตวิญญาณ</span>
+    <span class="dim-pill">การเงิน</span>
+    <span class="dim-pill">สังคม</span>
+    <span class="dim-pill">การบริหารจัดการ</span>
+  </div>
+</div>
+
+<!-- INTRO OVERVIEW LINK -->
+<div class="intro-bar">
+  <span>ภาพรวม WELLNESS TAXONOMY และเกณฑ์การขอรับรางวัล</span>
+  <a href="https://youtu.be/o_iwSPtXEd8?si=2pFB3XcsDCBHSrQ-" target="_blank">ดูวิดีโอ Overview ↗</a>
+</div>
+
+<!-- 9-CARD GRID -->
+<div class="grid">
+
+  <!-- 1 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">01</span>
+      <div class="card-titles">
+        <p class="card-title-th">กำหนดนโยบาย กฎระเบียบ และข้อบังคับ</p>
+        <p class="card-title-en">Policy</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรกำหนดนโยบายเป็นลายลักษณ์อักษรเพื่อสร้างพื้นฐานการอยู่ร่วมกันอย่างเป็นธรรม ครอบคลุมจรรยาบรรณ ความเสมอภาค และการป้องกันการคุกคามในที่ทำงาน</p>
+    <a class="card-link" href="https://youtu.be/USrHnAksZzA?si=HGllPQ7l1hRZ0LSJ" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 1
+    </a>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">02</span>
+      <div class="card-titles">
+        <p class="card-title-th">การให้ความรู้และข้อมูลเกี่ยวกับสุขสภาพ</p>
+        <p class="card-title-en">Knowledge</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรให้ข้อมูลสุขภาพที่ถูกต้องแก่พนักงานใน 3 ระดับ ตั้งแต่การส่งข้อมูล จัดอบรม ไปจนถึงการวัดความรู้</p>
+    <a class="card-link" href="https://youtu.be/2_hkEgk0WWs?si=Mz3DgfWSUmFwnJ7g" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 2
+    </a>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">03</span>
+      <div class="card-titles">
+        <p class="card-title-th">การพัฒนาขีดความสามารถของบุคลากร</p>
+        <p class="card-title-en">Capability</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรพัฒนาทักษะพนักงานให้ "ทำเป็น" ผ่านการอบรม On-site อย่างน้อย 3 ชั่วโมง เช่น EQ การคิดวิเคราะห์ และทักษะ AI</p>
+    <a class="card-link" href="https://youtu.be/43fcj2hAOes?si=kRE2O6lfsEWN9QdT" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 3
+    </a>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">04</span>
+      <div class="card-titles">
+        <p class="card-title-th">การจัดการสภาพแวดล้อมทางกายภาพ</p>
+        <p class="card-title-en">Physical Environment</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรจัดสภาพแวดล้อมทางกายภาพให้ได้มาตรฐานใน 18 หัวข้อ ทั้งแสง เสียง อุณหภูมิ และพื้นที่พักผ่อน</p>
+    <a class="card-link" href="https://youtu.be/d7pEZs-wSs8?si=YeE1LuWaMxiScPTq" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 4
+    </a>
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">05</span>
+      <div class="card-titles">
+        <p class="card-title-th">การสร้างแรงจูงใจ วัฒนธรรม ค่านิยม</p>
+        <p class="card-title-en">Motivation & Culture</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรสร้างพฤติกรรมสุขภาพผ่านกิจกรรมที่ทำซ้ำจนเป็นนิสัย เช่น Mindfulness การออม และการงดอบายมุข</p>
+    <a class="card-link" href="https://youtu.be/EecBmSnLG9g?si=fp8wvG09zwfUDmx_" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 5
+    </a>
+  </div>
+
+  <!-- 6 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">06</span>
+      <div class="card-titles">
+        <p class="card-title-th">การสนับสนุนทรัพยากรให้แก่บุคลากร</p>
+        <p class="card-title-en">Resource Support</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรจัดสรรทรัพยากรด้านสุขภาพให้พนักงาน ทั้งอาหาร อุปกรณ์ป้องกัน ที่ปรึกษาจิตแพทย์ และวันลาพิเศษ</p>
+    <a class="card-link" href="https://youtu.be/TpUVb-ImNgk?si=ZIIq5mGPG2agTlCn" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 6
+    </a>
+  </div>
+
+  <!-- 7 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">07</span>
+      <div class="card-titles">
+        <p class="card-title-th">การพัฒนากระบวนการภายในองค์กร</p>
+        <p class="card-title-en">Work Process</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรจัดระบบงานตามหลัก PDCA มีทั้ง Town Hall Mentoring Feedback และการ Audit มาตรฐานการทำงาน</p>
+    <a class="card-link" href="https://youtu.be/xZokWOKT7JE?si=puaTGQ-XFZ77OHmf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 7
+    </a>
+  </div>
+
+  <!-- 8 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">08</span>
+      <div class="card-titles">
+        <p class="card-title-th">การจัดโครงสร้างภายในองค์กร</p>
+        <p class="card-title-en">Structure</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรแต่งตั้งผู้รับผิดชอบงาน Wellness อย่างเป็นทางการ และรายงานผลต่อผู้บริหารระดับสูงอย่างสม่ำเสมอ</p>
+    <a class="card-link" href="https://youtu.be/ccTk1qyug6w?si=IK1iYR7fZ1ST2uqD" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 8
+    </a>
+  </div>
+
+  <!-- 9 -->
+  <div class="card">
+    <div class="card-top">
+      <span class="card-num">09</span>
+      <div class="card-titles">
+        <p class="card-title-th">การสร้างความเป็นสถาบันเพื่อความต่อเนื่อง</p>
+        <p class="card-title-en">Sustainability</p>
+      </div>
+    </div>
+    <p class="card-desc">องค์กรสร้างความต่อเนื่องระยะยาวด้วยงบประมาณ Wellness แยกต่างหาก การตั้งชมรม และการพัฒนาทีมงานเฉพาะด้าน</p>
+    <a class="card-link" href="https://youtu.be/jb211vDufC0?si=ZHFEtEx3sgnTdS4T" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+      ดูวิดีโอหมวดที่ 9
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span class="footer-brand">Union Wealth · Internal Use</span>
+  <span class="footer-note">Wellness Taxonomy — 9 หมวดแนวปฏิบัติ</span>
+</div>
+
+</body>
+</html>
